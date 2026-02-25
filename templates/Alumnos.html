@@ -27,12 +27,12 @@
             </div>
                 <br>
             <div>
-                <label for="apaterno" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Apellido Paterno</label>
+                <label for="apaterno" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Apellidos</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <i class="fas fa-id-card text-gray-400 text-xl"></i>
                     </div>
-                    <input type="text" name="apaterno" id="apaterno" value="{{ form.apaterno.data if form.apaterno.data else '' }}"
+                    <input type="text" name="apellidos" id="apellidos" value="{{ form.apellidos.data if form.apellidos.data else '' }}"
                         class="block w-full pl-14 pr-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
                          required />
                 </div>
@@ -45,6 +45,17 @@
                         <i class="fas fa-envelope text-gray-400 text-xl"></i>
                     </div>
                     <input type="email" name="email" id="email" value="{{ form.email.data if form.email.data else '' }}"
+                        class="block w-full pl-14 pr-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
+                         required />
+                </div>
+            </div>
+            <div class="pb-4">
+                <label for="telefono" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">telefono</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <i class="fas fa-envelope text-gray-400 text-xl"></i>
+                    </div>
+                    <input type="telefono" name="telefono" id="telefono" value="{{ form.telefono.data if form.telefono.data else '' }}"
                         class="block w-full pl-14 pr-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
                          required />
                 </div>
