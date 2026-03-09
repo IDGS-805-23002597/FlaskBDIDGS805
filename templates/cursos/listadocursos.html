@@ -5,8 +5,8 @@
     <div class="flex flex-col items-center justify-center min-h-screen py-10 px-4 bg-gray-50">
     <br>
     <div class="w-full max-w-4xl mb-4 flex justify-start">
-        <a href="Alumnos" style="border-radius: 6px;" class="inline-block w-64 text-center text-white bg-blue-600 hover:bg-blue-700 shadow-md font-semibold rounded-md text-sm px-2 py-2 transition-all duration-300">
-    <i class="fa-solid fa-user-plus mr-2"></i> AGREGAR ALUMNO
+        <a href="{{ url_for('cursos.curso') }}" style="border-radius: 6px;" class="inline-block w-64 text-center text-white bg-blue-600 hover:bg-blue-700 shadow-md font-semibold rounded-md text-sm px-2 py-2 transition-all duration-300">
+    <i class="fa-solid fa-user-plus mr-2"></i> AGREGAR CURSO
         </a>
     </div>
     <br>
@@ -14,40 +14,41 @@
         <table class="min-w-full divide-y divide-gray-200 text-sm">
             <thead class="bg-gray-100">
                 <tr>
-                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Nombre</th>
-                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Apellidos</th>
-                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Correo</th>
-                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Telefono</th>
-                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-700 uppercase tracking-wider w-24">Editar</th>.
-                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Detalles</th>
-                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-700 uppercase tracking-wider w-24">Eliminar</th>
+                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Nombre del Curso</th>
+                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">Descripcion</th>
+                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700 uppercase tracking-wider">id de maestro</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-100">
-                {% for alumno in alumnos %}
+                {% for curso in cursos %}
                 <tr class="hover:bg-blue-50 transition-colors duration-150">
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-600">{{ alumno.nombre }}</td>
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-600">{{ alumno.apellidos }}</td>
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-500">{{ alumno.email }}</td>
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-500">{{ alumno.telefono }}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600">{{ curso.nombre }}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600">{{ curso.descripcion }}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-500">{{ curso.maestro_id }}</td>
 
                  <td class="px-4 py-4 text-center">
-                    <a href="{{ url_for('modificar', id=alumno.id) }}"
+                    <a href="{{ url_for('cursos.modificar', id=curso.id) }}"
                           style="background-color: #f95a16; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         <i class="fa-solid fa-pen-to-square" style="margin-right: 8px;"></i> EDITAR
                      </a>
                  </td>
 
                     <td class="px-4 py-4 text-center">
-                        <a href="{{ url_for('detalles', id=alumno.id) }}"
+                       <a href="{{ url_for('cursos.detalles', id=curso.id) }}"
                         style="background-color: #9333ea; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                          <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> DETALLES
                         </a>
                     </td>
                   <td class="px-4 py-4 text-center">
-                    <a href="{{ url_for('eliminar', id=alumno.id) }}"
+                    <a href="{{ url_for('cursos.eliminar', id=curso.id) }}"
                      style="background-color: #dc2626; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                      <i class="fa-solid fa-trash" style="margin-right: 8px;"></i> ELIMINAR
+                      </a>
+                    </td>
+                    <td class="px-4 py-4 text-center">
+                    <a href="{{ url_for('cursos.alumnosins', id=curso.id) }}"
+                     style="background-color: #26a9dc; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                     <i class="fa-solid fa-trash" style="margin-right: 8px;"></i> ALUMNOS INSCRITOS
                       </a>
                     </td>
                 </tr>

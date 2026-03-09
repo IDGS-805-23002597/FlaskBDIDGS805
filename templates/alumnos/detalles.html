@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="group py-32 relative overflow-x-auto sm:rounded-lg flex justify-center">
+
+    <div class="relative bg-neutral-primary-soft max-w-md w-full p-6 border border-default rounded-base shadow-xs">
+
+        <button id="dropdownButton" data-dropdown-toggle="dropdown"
+            class="absolute top-2 end-2 text-body hover:text-heading bg-neutral-primary-soft border border-transparent hover:bg-neutral-tertiary focus:ring-4 focus:ring-neutral-tertiary rounded-base p-1.5 focus:outline-none"
+            type="button">
+            <span class="sr-only">Open dropdown</span>
+
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                    d="M6 12h.01m6 0h.01m5.99 0h.01" />
+            </svg>
+        </button>
+        <div id="dropdown"
+            class="z-10 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-36 hidden">
+            <ul class="p-2 text-sm text-body font-medium">
+                <li>
+                    <a href="#"
+                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">
+                        Edit
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md">
+                        Export Data
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="inline-flex items-center w-full p-2 text-red-600 hover:bg-neutral-tertiary-medium rounded-md">
+                        Delete
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex flex-col items-center">
+
+            <img class="w-24 h-24 mb-6 rounded-full"
+                src="/static/img/detalle.png">
+
+            <h5 class="mb-2 text-xl font-semibold tracking-tight text-heading">
+                Nombre: {{ nombre }} {{ apellidos }}
+            </h5>
+
+            <h3 class="mb-2 text-lg text-gray-900">
+                Correo: {{ email }}
+            </h3>
+
+            <h3 class="mb-4 text-lg text-gray-900">
+                Teléfono: {{ telefono }}
+            </h3>
+
+            <h3 class="mb-2 text-lg font-semibold text-gray-800">
+                Cursos inscritos
+            </h3>
+
+            <ul class="w-full mb-4">
+                {% for curso in cursos %}
+                    <li class="bg-gray-100 p-2 rounded mb-2 text-center">
+                        {{ curso.nombre }}
+                    </li>
+                {% else %}
+                    <li class="text-gray-500 text-center">
+                        No está inscrito en ningún curso
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('alumnos.index') }}"
+                class="inline-block w-64 text-center text-white bg-blue-600 hover:bg-blue-700 shadow-md font-semibold rounded-md text-sm px-2 py-2 transition-all duration-300">
+
+                REGRESAR
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

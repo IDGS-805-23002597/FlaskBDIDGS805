@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="flex flex-col items-center justify-center min-h-screen py-10 px-4 bg-gray-50">
+
+<br>
+
+<div class="w-full max-w-4xl mb-4 flex justify-start">
+    <a href="{{ url_for('alumnos.crear_alumno') }}" 
+    style="border-radius: 6px;" 
+    class="inline-block w-64 text-center text-white bg-blue-600 hover:bg-blue-700 shadow-md font-semibold rounded-md text-sm px-2 py-2 transition-all duration-300">
+        <i class="fa-solid fa-user-plus mr-2"></i> AGREGAR ALUMNO
+    </a>
+</div>
+
+<br>
+
+<div class="w-full max-w-4xl overflow-hidden bg-white shadow-xl rounded-lg border border-gray-200">
+
+<table class="min-w-full divide-y divide-gray-200 text-sm">
+
+<thead class="bg-gray-100">
+<tr>
+    <th class="px-4 py-3 text-left font-bold text-gray-700 uppercase">Nombre</th>
+    <th class="px-4 py-3 text-left font-bold text-gray-700 uppercase">Apellidos</th>
+    <th class="px-4 py-3 text-left font-bold text-gray-700 uppercase">Correo</th>
+    <th class="px-4 py-3 text-left font-bold text-gray-700 uppercase">Telefono</th>
+    <th class="px-4 py-3 text-center font-bold text-gray-700 uppercase">Editar</th>
+    <th class="px-4 py-3 text-center font-bold text-gray-700 uppercase">Detalles</th>
+    <th class="px-4 py-3 text-center font-bold text-gray-700 uppercase">Eliminar</th>
+    <th class="px-4 py-3 text-center font-bold text-gray-700 uppercase">Inscribir</th>
+</tr>
+</thead>
+
+<tbody class="bg-white divide-y divide-gray-100">
+
+{% for alumno in alumnos %}
+<tr class="hover:bg-blue-50 transition-colors duration-150">
+
+<td class="px-4 py-3">{{ alumno.nombre }}</td>
+<td class="px-4 py-3">{{ alumno.apellidos }}</td>
+<td class="px-4 py-3">{{ alumno.email }}</td>
+<td class="px-4 py-3">{{ alumno.telefono }}</td>
+
+<td class="px-4 py-4 text-center">
+<a href="{{ url_for('alumnos.modificar', id=alumno.id) }}"
+style="background-color:#f95a16;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;display:inline-flex;align-items:center;">
+<i class="fa-solid fa-pen-to-square mr-2"></i> EDITAR
+</a>
+</td>
+
+<td class="px-4 py-4 text-center">
+<a href="{{ url_for('alumnos.detalles', id=alumno.id) }}"
+style="background-color:#9333ea;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;display:inline-flex;align-items:center;">
+<i class="fa-solid fa-circle-info mr-2"></i> DETALLES
+</a>
+</td>
+
+<td class="px-4 py-4 text-center">
+<a href="{{ url_for('alumnos.eliminar', id=alumno.id) }}"
+style="background-color:#dc2626;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;display:inline-flex;align-items:center;">
+<i class="fa-solid fa-trash mr-2"></i> ELIMINAR
+</a>
+</td>
+
+<td class="px-4 py-4 text-center">
+<a href="{{ url_for('inscripciones.inscribirCurso', id=alumno.id) }}"
+style="background-color:#16a34a;color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;display:inline-flex;align-items:center;">
+<i class="fa-solid fa-book mr-2"></i> INSCRIBIR
+</a>
+</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+<td colspan="8" class="px-4 py-8 text-center text-gray-400 italic bg-gray-50">
+No se encontraron registros de alumnos.
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+{% endblock %}

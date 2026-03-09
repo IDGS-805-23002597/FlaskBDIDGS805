@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<div class="flex flex-col items-center justify-center min-h-screen py-16 px-4 bg-gray-50">
+<br><br>
+
+<div class="w-full max-w-2xl bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
+
+```
+<div class="bg-green-600 py-10 px-10 text-center">
+    <h2 class="text-white text-3xl font-black uppercase tracking-tighter">
+        Registro de Curso
+    </h2>
+    <p class="text-green-100 text-sm mt-2 font-bold uppercase tracking-widest opacity-80">
+        Gestión Académica Integral
+    </p>
+</div>
+
+<form action="{{ url_for('cursos.curso') }}" method="POST" class="p-12 space-y-8">
+    {{ form.csrf_token }}
+
+    <div>
+        <label class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">
+            Nombre del Curso
+        </label>
+
+        <input type="text"
+            name="nombre"
+            value="{{ form.nombre.data if form.nombre.data else '' }}"
+            class="block w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg
+            focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500"
+            required>
+    </div>
+
+    <div>
+        <label class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">
+            Descripción
+        </label>
+
+        <textarea
+            name="descripcion"
+            class="block w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg
+            focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500"
+            rows="3">{{ form.descripcion.data if form.descripcion.data else '' }}</textarea>
+    </div>
+
+    <div>
+        <label class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">
+            Maestro Asignado
+        </label>
+
+        <select name="maestro_id"
+            class="block w-full px-6 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg
+            focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500">
+
+            {% for value, label in form.maestro_id.choices %}
+                <option value="{{ value }}"
+                    {% if form.maestro_id.data == value %} selected {% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <button type="submit"
+        style="background-color: #16a34a;"
+        class="w-full flex items-center justify-center py-6 rounded-2xl text-white font-black text-sm uppercase tracking-widest shadow-lg hover:bg-green-700 transition-all">
+
+        Guardar Curso
+    </button>
+
+    <div class="mt-8 text-center">
+        <a href="{{ url_for('cursos.listado') }}"
+           class="inline-flex items-center text-xs font-black text-gray-400 hover:text-green-600 uppercase">
+
+            ← Volver al Listado de Cursos
+        </a>
+    </div>
+
+</form>
+```
+
+</div>
+
+<br><br>
+
+</div>
+
+{% endblock %}

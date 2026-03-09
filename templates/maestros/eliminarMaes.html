@@ -13,14 +13,15 @@
         </div>
             <br>
         <form action="{{ url_for('maestros.eliminar') }}" method="POST" class="p-12 space-y-8">
+            {{ form.csrf_token }}
 
             <div>
-                <label for="id" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Id</label>
+                <label for="matricula" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Matricula</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <i class="fas fa-user text-gray-400 text-xl"></i>
                     </div>
-                    <input type="hidden" name="id" id="id" value="{{ form.id.data if form.id.data else '' }}"
+                    <input type="hidden" name="matricula" id="matricula" value="{{ form.matricula.data if form.matricula.data else '' }}"
                         class="block w-full pl-14 pr-6 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition-all"
                          required />
                 </div>
@@ -81,7 +82,7 @@
             </button>
                 <br>
             <div class="mt-8 text-center">
-                <a href="{{ url_for('index') }}" class="inline-flex items-center text-xs font-black text-gray-400 hover:text-green-600 uppercase tracking-tighter transition-colors">
+                <a href="{{ url_for('maestros.listado') }}"class="inline-flex items-center text-xs font-black text-gray-400 hover:text-green-600 uppercase tracking-tighter transition-colors">
                     <i class="fas fa-arrow-left mr-2"></i> Volver al Listado de Alumnos
                 </a>
             </div>

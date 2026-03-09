@@ -34,14 +34,14 @@ def maes():
 @maestros.route("/maestros/detalles", methods=['GET','POST'])
 def detalles():
     if request.method=='GET':
-        id=request.args.get('id')
+        matricula=request.args.get('matricula')
         #select * from alumnos where id=id
-        maes1=db.session.query(Maestros).filter(Maestros.id==id).first()
+        maes1=db.session.query(Maestros).filter(Maestros.matricula==matricula).first()
         nombre=maes1.nombre
         apellidos=maes1.apellidos
         especialidad=maes1.especialidad
         email=maes1.email
-    return render_template('maestros/detallesMaes.html', id=id, nombre=nombre,
+    return render_template('maestros/detallesMaes.html', matricula=matricula, nombre=nombre,
                        apellidos=apellidos, especialidad=especialidad, email=email)
     
 @maestros.route('/maestros/modificar', methods=['GET','POST'])
@@ -49,17 +49,19 @@ def modificar():
     create_form = forms.MaestrosForm(request.form)
 
     if request.method == 'GET':
-        id = request.args.get('id')
-        maes1 = db.session.query(Maestros).filter(Maestros.id == id).first()
-        create_form.id.data = maes1.id
+        matricula = request.args.get('matricula')
+        maes1 = db.session.query(Maestros).filter(Maestros.matricula == matricula).first()
+
+        create_form.matricula.data = maes1.matricula
         create_form.nombre.data = maes1.nombre
         create_form.apellidos.data = maes1.apellidos
         create_form.especialidad.data = maes1.especialidad
         create_form.email.data = maes1.email
 
     if request.method == 'POST':
-        id = create_form.id.data
-        maes = db.session.query(Maestros).filter(Maestros.id == id).first()
+        matricula = create_form.matricula.data
+
+        maes = db.session.query(Maestros).filter(Maestros.matricula == matricula).first()
 
         maes.nombre = create_form.nombre.data
         maes.apellidos = create_form.apellidos.data
@@ -75,16 +77,16 @@ def modificar():
 def eliminar():
 	create_form = forms.MaestrosForm(request.form)
 	if request.method == 'GET':
-		id=request.args.get('id')
-		maes1=db.session.query(Maestros).filter(Maestros.id==id).first()
-		create_form.id.data=maes1.id
+		matricula=request.args.get('matricula')
+		maes1=db.session.query(Maestros).filter(Maestros.matricula==matricula).first()
+		create_form.matricula.data=maes1.matricula
 		create_form.nombre.data=maes1.nombre
 		create_form.apellidos.data=maes1.apellidos
 		create_form.especialidad.data=maes1.especialidad
 		create_form.email.data=maes1.email
 	if request.method=='POST':
-		id=create_form.id.data
-		maes=db.session.query(Maestros).filter(Maestros.id==id).first()
+		id=create_form.matricula.data
+		maes=db.session.query(Maestros).filter(Maestros.matricula==id).first()
 		db.session.delete(maes)
 		db.session.commit()
 		return redirect(url_for('maestros.listado'))

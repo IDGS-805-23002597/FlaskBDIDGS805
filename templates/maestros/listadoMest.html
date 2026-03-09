@@ -32,20 +32,20 @@
                     <td class="px-4 py-3 whitespace-nowrap text-gray-500">{{ maes.email }}</td>
 
                  <td class="px-4 py-4 text-center">
-                    <a href="{{ url_for('maestros.modificar', id=maes.id) }}"
+                    <a href="{{ url_for('maestros.modificar', matricula=maes.matricula) }}"
                           style="background-color: #f95a16; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                         <i class="fa-solid fa-pen-to-square" style="margin-right: 8px;"></i> EDITAR
                      </a>
                  </td>
 
                     <td class="px-4 py-4 text-center">
-                       <a href="{{ url_for('maestros.detalles', id=maes.id) }}"
+                       <a href="{{ url_for('maestros.detalles', matricula=maes.matricula) }}"
                         style="background-color: #9333ea; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                          <i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> DETALLES
                         </a>
                     </td>
                   <td class="px-4 py-4 text-center">
-                    <a href="{{ url_for('maestros.eliminar', id=maes.id) }}"
+                    <a href="{{ url_for('maestros.eliminar', matricula=maes.matricula) }}"
                      style="background-color: #dc2626; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                      <i class="fa-solid fa-trash" style="margin-right: 8px;"></i> ELIMINAR
                       </a>

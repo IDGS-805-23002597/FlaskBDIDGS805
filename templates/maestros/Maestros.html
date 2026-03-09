@@ -13,6 +13,7 @@
         </div>
             <br>
         <form action="{{ url_for('maestros.maes') }}" method="POST" class="p-12 space-y-8">
+            {{ form.csrf_token }}
 
             <div>
                 <label for="nombre" class="block text-xs font-black text-gray-500 uppercase tracking-widest mb-2 ml-2">Nombre Completo</label>
@@ -68,7 +69,7 @@
             </button>
                 <br>
             <div class="mt-8 text-center">
-                <a href="{{ url_for('index') }}" class="inline-flex items-center text-xs font-black text-gray-400 hover:text-green-600 uppercase tracking-tighter transition-colors">
+                <a href="{{ url_for('maestros.listado') }}"  class="inline-flex items-center text-xs font-black text-gray-400 hover:text-green-600 uppercase tracking-tighter transition-colors">
                     <i class="fas fa-arrow-left mr-2"></i> Volver al Listado de Alumnos
                 </a>
             </div>
